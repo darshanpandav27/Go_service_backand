@@ -1,0 +1,24 @@
+{
+  "name": "go-service-apis",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "nodemon  -r esm server.js",
+    "start": "NODE_ENV=production node -r esm server.js"
+  },
+  "author": "darshan pandav",
+  "license": "ISC",
+  "dependencies": {
+    "bcrypt": "^5.1.0",
+    "dotenv": "^16.3.1",
+    "esm": "^3.2.25",
+    "express": "^4.18.2",
+    "joi": "^17.9.2",
+    "jsonwebtoken": "^9.0.1",
+    "mongoose": "^5.12.1"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.1"
+  }
+}
