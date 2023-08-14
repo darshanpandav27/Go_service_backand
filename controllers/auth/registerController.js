@@ -68,7 +68,7 @@ const registerController = {
         return next(err);
     }
 
-    res.json({ access_token });
+    res.json({ user,access_token});
 
     }
 }

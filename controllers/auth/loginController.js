@@ -29,11 +29,11 @@ const loginController = {
             }
 
             // Toekn
-            const access_token = JwtService.sign({ _id: user._id, role: user.role });
+            const access_token = JwtService.sign({ _id: user._id });
 
         // database whitelist
 
-            res.json({ access_token });
+            res.json({ user ,access_token });
 
         } catch(err) {
             return next(err);
