@@ -8,7 +8,8 @@ const userSchema = new Schema({
     password: { type: String},
     address:{ type: String,},
     Gender: { type: String},
-    image: { type: String}
+    image: { type: String},
+    role: { type: String, default: 'customer' },
 }, { timestamps: true });
 
 export default mongoose.model('User', userSchema, 'users');
