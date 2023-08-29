@@ -46,7 +46,7 @@ const loginController = {
 
         } catch(err) {
             return res.status(500).json({
-                status: false,
+                status: true,
                 massage: err
             })
         }
