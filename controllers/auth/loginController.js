@@ -14,18 +14,27 @@ const loginController = {
         const { error } = loginSchema.validate(req.body);
 
         if (error) {
-            return next(error);
+            return res.status(500).json({
+                status: false,
+                massage: err
+            })
         }
 
         try {
             const user = await User.findOne({ email: req.body.email });
             if (!user) {
-                return next(CustomErrorHandler.wrongCredentials());
+                return res.status(409).json({
+                    status: false,
+                    massage:'Username or password is wrong!'
+                })
             }
             // compare the password
             const match = await bcrypt.compare(req.body.password, user.password);
             if (!match) {
-                return next(CustomErrorHandler.wrongCredentials());
+                return res.status(409).json({
+                    status: false,
+                    massage:'Username or password is wrong!'
+                })
             }
 
             // Toekn
@@ -33,10 +42,13 @@ const loginController = {
 
         // database whitelist
 
-            res.json({ user ,access_token });
+            res.json({ status: false,user ,access_token });
 
         } catch(err) {
-            return next(err);
+            return res.status(500).json({
+                status: false,
+                massage: err
+            })
         }
 
     },

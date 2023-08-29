@@ -3,6 +3,8 @@ import { User } from '../../models';
 import bcrypt from 'bcrypt';
 import JwtService from '../../services/JwtService';
 import CustomErrorHandler from '../../services/CustomErrorHandler';
+import randomstring from 'randomstring';
+import sendmail from '../../services/Otpsending';
 
 const registerController = {
     async register(req, res, next) {
@@ -26,19 +28,31 @@ const registerController = {
         try {
             const exist = await User.exists({ email: req.body.email });
             if (exist) {
-                return next(CustomErrorHandler.alreadyExist('This email is already taken.'));
+                return res.status(409).json({
+                    status: false,
+                    massage:'This email is already taken.'
+                })
             }
         } catch(err) {
-            return next(err);
+            return res.status(500).json({
+                status: false,
+                massage: err
+            })
         }
 
         try {
             const exist = await User.exists({ phone_numbar: req.body.phone_numbar });
             if (exist) {
-                return next(CustomErrorHandler.alreadyExist('This phone numbar is already taken.'));
+                return res.status(409).json({
+                    status: false,
+                    massage:'This Phone Numbar is already taken.'
+                })
             }
         } catch(err) {
-            return next(err);
+            return res.status(500).json({
+                status: false,
+                massage: err
+            })
         }
 
         const { name, email, phone_numbar ,password,role } = req.body;
@@ -59,17 +73,27 @@ const registerController = {
     let access_token;
 
     try {
+        let mailsubject = "Mail Verification";
+        const randomsTring = randomstring.generate({
+        length: 6,
+        charset: ['numeric']
+        });
+        console.log(randomsTring);
+        let content = ' Hello, '+name+',\n \n'+randomsTring+'';
+        sendmail(req.body.email,mailsubject,content);
         const result = await user.save();
         console.log(result);
-
         // Token
         access_token = JwtService.sign({ _id: result._id, role: result.role });
         // database whitelist
     } catch(err) {
-        return next(err);
+        return res.status(500).json({
+            status: false,
+            massage: err
+        })
     }
-
-    res.json({ user,access_token});
+    
+    res.status(200).json({ status:true,user,access_token});
 
     }
 }

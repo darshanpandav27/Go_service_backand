@@ -114,7 +114,10 @@ const profileController = {
                     return next(CustomErrorHandler.notFound());
                 }
             } catch (err) {
-                return next(err);
+                return next(err).json({
+                    status: false,
+                    massage:err
+                });
             }
             res.status(201).json({
                 status: true,
