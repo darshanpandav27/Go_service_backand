@@ -42,11 +42,11 @@ const loginController = {
 
         // database whitelist
 
-            res.json({ status: false,user ,access_token });
+            res.status(200).json({ status: true,user ,access_token });
 
         } catch(err) {
             return res.status(500).json({
-                status: true,
+                status: false,
                 massage: err
             })
         }
