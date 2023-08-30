@@ -44,7 +44,7 @@ const profileController = {
              }
 
 
-            const { name, email, address, Gender,phone_numbar} = req.body;
+            const { name, email, address, Gender,phone_number} = req.body;
 
             let document;
             try {
@@ -52,7 +52,7 @@ const profileController = {
                     {_id: req.params.id},
                     {name,
                     email,
-                    phone_numbar,
+                    phone_number,
                     address,
                     Gender,
                     image: filePath},
@@ -96,7 +96,7 @@ const profileController = {
              }
 
 
-            const { name, email, address, Gender,phone_numbar} = req.body;
+            const { name, email, address, Gender,phone_number} = req.body;
 
             let document;
             try {
@@ -104,7 +104,7 @@ const profileController = {
                     {_id: req.params.id},
                     {name,
                     email,
-                    phone_numbar,
+                    phone_number,
                     address,
                     Gender,
                     ...(req.file && { image: filePath })},
