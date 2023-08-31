@@ -26,7 +26,10 @@ const profileController = {
     async profile(req, res, next) {
         handleMultipartData(req, res, async (err) => {
             if (err) {
-                return next(CustomErrorHandler.serverError(err.message));
+                return res.status(500).json({
+                    status: false,
+                    massage: 'Internal server error'
+                });
             }
             const filePath = req.file.path;
             // validation
@@ -36,11 +39,15 @@ const profileController = {
              if(error){
                 fs.unlink(`${appRoot}/${filePath}`,(err)=>{
                     // console.log(err.message);
-                        return next(
-                            CustomErrorHandler.serverError(err.message)
-                        );
+                        return res.status(500).json({
+                            status: false,
+                            massage: 'Internal server error'
+                        });
                 });
-                return next(error);
+                return res.status(500).json({
+                    status: false,
+                    massage: error
+                });
              }
 
 
@@ -59,23 +66,32 @@ const profileController = {
                     {new : true}
                 );
                 if (!document) {
-                    return next(CustomErrorHandler.notFound());
+                    return res.status(400).json({
+                        status: false,
+                        massage:"404 Not Found"
+                    });
                 }
             } catch (err) {
-                return next(err);
+                return res.status(500).json({
+                    status: false,
+                    massage: err
+                });
             }
             console.log(document);
-            res.status(201).json({
+            res.status(200).json({
                 status: true,
                 data:document,
-                massage:"successfully"
+                massage:"successfully created..."
             });
         });
     },
     update(req, res, next) {
         handleMultipartData(req, res, async (err) => {
             if (err) {
-                return next(CustomErrorHandler.serverError(err.message));
+                return res.status(500).json({
+                    status: false,
+                    massage: 'Internal server error'
+                });
             }
             let filePath;
             if (req.file) {
@@ -88,11 +104,15 @@ const profileController = {
              if(error){
                 fs.unlink(`${appRoot}/${filePath}`,(err)=>{
                     // console.log(err.message);
-                        return next(
-                            CustomErrorHandler.serverError(err.message)
-                        );
+                         return res.status(500).json({
+                            status: false,
+                            massage: 'Internal server error'
+                        });
                 });
-                return next(error);
+                return res.status(500).json({
+                    status: false,
+                    massage: error
+                });
              }
 
 
@@ -119,10 +139,10 @@ const profileController = {
                     massage:err
                 });
             }
-            res.status(201).json({
+            res.status(200).json({
                 status: true,
                 data:document,
-                massage:"successfully"
+                massage:"Update successfully"
             });
         });
     }
