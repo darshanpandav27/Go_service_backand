@@ -1,3 +1,4 @@
+
 import mongoose from 'mongoose';
 const Schema = mongoose.Schema;
 
@@ -10,6 +11,7 @@ const userSchema = new Schema({
     Gender: { type: String},
     image: { type: String},
     role: { type: String, default: 'customer' },
+    otp: { type: String }
 }, { timestamps: true });
 
 export default mongoose.model('User', userSchema, 'users');
