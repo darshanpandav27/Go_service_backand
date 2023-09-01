@@ -12,7 +12,6 @@ const userSchema = new Schema({
     Gender: { type: String},
     image: {
         type: String,
-        required: true,
         get: (image) => {
             // http://localhost:5000/uploads/1616443169266-52350494.png
             return `${APP_URL}${image}`;
