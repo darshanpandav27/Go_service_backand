@@ -198,22 +198,72 @@ const registerController = {
                     massage:'Otp is wrong! please try again'
                 })
             }
-            // const match = await bcrypt.compare(req.body.otp, user.otp);
-            // print
-            // if (!match) {
-            //     return res.status(409).json({
-            //         status: false,
-            //         massage:'Otp is wrong! please try again'
-            //     })
-            // }
-            // res.status(200).json({
-            //     status:true,
-            //    massage:"successfully"
-            // })
         } catch(err) {
            return next(err);
         }
-    }
+    },
+    async Reotpverified(req,res,next){
+        const otpSchema = Joi.object({
+            name: Joi.string().min(3).max(30).required(),
+            email: Joi.string().email().required()
+        });
+
+        console.log(req.body);
+
+        const { error } = otpSchema.validate(req.body);
+
+        if (error) {
+            return res.status(500).json({
+                status: false,
+                massage: error
+            })
+        }
+
+        try {
+            const user = await User.findOne({ email: req.body.email });
+            if (!user) {
+                return res.status(409).json({
+                    status: false,
+                    massage:'Email is wrong !'
+                })
+            }
+        } catch(err) {
+            return res.status(500).json({
+                status: false,
+                massage: err
+            })
+        }
+
+        try {
+            let mailsubject = "Mail Verification";
+            const otp = randomstring.generate({
+            length: 6,
+            charset: ['numeric']
+            });
+            console.log(otp);
+            let content = ' Hello, '+req.body.name+',\n \n'+otp+'';
+            sendmail(req.body.email,mailsubject,content);
+            const user = await User.findOneAndUpdate({ _id: req.user._id }, {otp},{new : true});
+            if (!user) {
+                returnres.status(400).json({
+                    status: false,
+                    massage:"404 Not Found"
+                });
+            }
+            const result = await user.save();
+            console.log(result);
+            res.status(200).json({ status:true,otp,massage:"Otp Sending...."});
+            // Token
+            // database whitelist
+        } catch(err) {
+            return res.status(500).json({
+                status: false,
+                massage: err
+            })
+        }
+        
+        
+    },
 }
 
 

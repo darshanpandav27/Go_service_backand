@@ -11,6 +11,8 @@ router.put('/profile/:id', auth, profileController.update);
 router.get('/Aboutus', auth ,userController.about);
 router.post('/otp/:id',auth,registerController.otp);
 router.post('/otpverified/:id',auth,registerController.otpverified);
+router.put('/Reotpverified/:id',auth,registerController.Reotpverified);
+
 
 
 
