@@ -6,7 +6,7 @@ import fs from 'fs';
 import profileSchema from '../validators/profileValidator';
 
 const storage = multer.diskStorage({
-    destination: (req, file, cb) => cb(null, 'uploads/'),
+    destination: (req, file, cb) => cb(null, 'uploads'),
     filename: (req, file, cb) => {
         const uniqueName = `${Date.now()}-${Math.round(
             Math.random() * 1e9
@@ -32,6 +32,8 @@ const profileController = {
                 });
             }
             const filePath = req.file.path;
+            console.log(`=====>>>>>${req.file.path}`);
+            console.log(`=====>>>>>${filePath}`);
             // validation
 
             const { error } = profileSchema.validate(req.body);
@@ -65,6 +67,7 @@ const profileController = {
                     image: filePath},
                     {new : true}
                 );
+                console.log(document.image);
                 if (!document) {
                     return res.status(400).json({
                         status: false,
