@@ -23,6 +23,7 @@ app.use(express.urlencoded({ extended: false }));
 
 app.use(express.json());
 app.use('/api', routes);
+app.use('/uploads', express.static('uploads'));
 console.log(APP_PORT);
 app.use(errorHandler);
 app.listen(APP_PORT,() => console.log(`port is ${APP_PORT}`));

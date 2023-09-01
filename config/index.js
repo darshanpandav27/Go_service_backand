@@ -7,5 +7,6 @@ export const {
     DB_URL,
     JWT_SECRET,
     SMTP_MAIL,
-    SMTP_PASSWORD
+    SMTP_PASSWORD,
+    APP_URL
 } = process.env;
