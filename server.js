@@ -1,7 +1,7 @@
 import express from 'express';
-import {APP_PORT,DB_URL} from './config';
-import routes from './routes';
-import errorHandler from './middlewares/errorHandler';
+import {APP_PORT,DB_URL} from './config/index.js';
+import routes from './routes/index.js';
+import errorHandler from './middlewares/errorHandler.js';
 import mongoose from 'mongoose';
 import path from 'path';
 
@@ -18,7 +18,7 @@ db.once('open', () => {
     console.log('DB connected...');
 });
 
-global.appRoot = path.resolve(__dirname);
+// global.appRoot = path.resolve(__dirname);
 app.use(express.urlencoded({ extended: false }));
 
 app.use(express.json());

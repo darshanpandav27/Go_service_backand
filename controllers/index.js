@@ -1,4 +1,4 @@
-export { default as registerController } from './auth/registerController';
-export { default as loginController } from './auth/loginController';
-export { default as userController } from './auth/userController';
-export { default as profileController} from './profileController';
+export { default as registerController } from './auth/registerController.js';
+export { default as loginController } from './auth/loginController.js';
+export { default as userController } from './auth/userController.js';
+export { default as profileController} from './profileController.js';

@@ -1,10 +1,9 @@
 import Joi from "joi";
-import { User } from '../../models';
+import { User } from '../../models/index.js';
 import bcrypt from 'bcrypt';
-import JwtService from '../../services/JwtService';
-import CustomErrorHandler from '../../services/CustomErrorHandler';
+import JwtService from '../../services/JwtService.js';
 import randomstring from 'randomstring';
-import sendmail from '../../services/Otpsending';
+import sendmail from '../../services/Otpsending.js';
 
 const registerController = {
     async register(req, res, next) {

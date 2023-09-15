@@ -1,9 +1,9 @@
-import { User } from "../models";
+import { User } from "../models/index.js";
 import multer from "multer";
-import CustomErrorHandler from '../services/CustomErrorHandler';
+import CustomErrorHandler from '../services/CustomErrorHandler.js';
 import path from 'path';
 import fs from 'fs';
-import profileSchema from '../validators/profileValidator';
+import profileSchema from '../validators/profileValidator.js';
 
 const storage = multer.diskStorage({
     destination: (req, file, cb) => cb(null, 'uploads'),

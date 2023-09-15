@@ -1,10 +1,7 @@
 import Joi from 'joi';
-import { User } from '../../models';
-import CustomErrorHandler from '../../services/CustomErrorHandler';
+import { User } from '../../models/index.js';
 import bcrypt from 'bcrypt';
-import JwtService from '../../services/JwtService';
-import randomstring from 'randomstring';
-import sendmail from '../../services/Otpsending';
+import JwtService from '../../services/JwtService.js';
 
 const loginController = {
     async login(req, res, next) {

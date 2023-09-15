@@ -1,7 +1,7 @@
 
 import mongoose from 'mongoose';
 const Schema = mongoose.Schema;
-import {APP_URL} from '../config'; 
+import {APP_URL} from '../config/index.js'; 
 
 const userSchema = new Schema({ 
     name: { type: String},

@@ -1,6 +1,5 @@
 import mongoose from 'mongoose';
 const Schema = mongoose.Schema;
-import {APP_URL} from '../config'; 
 
 const profileSchema = new Schema({ 
     name: { type: String, required: true },

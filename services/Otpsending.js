@@ -1,5 +1,5 @@
 import nodemailer from 'nodemailer';
-import {SMTP_MAIL,SMTP_PASSWORD} from '../config';
+import {SMTP_MAIL,SMTP_PASSWORD} from '../config/index.js';
 
 const sendmail = async (email,mailsubject,content)=>{
     try {

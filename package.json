@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
+  "type": "module",
   "scripts": {
     "dev": "nodemon  -r esm server.js",
     "start": "NODE_ENV=production node -r esm server.js"

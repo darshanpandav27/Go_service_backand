@@ -1,6 +1,5 @@
-import { User } from "../../models";
-import CustomErrorHandler from "../../services/CustomErrorHandler";
-import aboutSchema from '../../validators/about';
+import { User } from "../../models/index.js";
+import aboutSchema from '../../validators/about.js';
 
 const userController = {
     async me(req, res, next) {
