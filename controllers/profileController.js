@@ -22,6 +22,7 @@ const handleMultipartData = multer({
 }).single('image'); // 5mb
 
 
+
 const profileController = {
     async profile(req, res, next) {
         handleMultipartData(req, res, async (err) => {
