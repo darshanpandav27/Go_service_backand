@@ -17,6 +17,7 @@ db.on('error', console.error.bind(console, 'connection error:'));
 db.once('open', () => {
     console.log('DB connected...');
 });
+global.appRoot = path.resolve(__dirname);
 app.use(express.urlencoded({ extended: false }));
 
 app.use(express.json());
