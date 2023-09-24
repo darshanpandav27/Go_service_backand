@@ -33,8 +33,6 @@ const profileController = {
                 });
             }
             const filePath = req.file.path;
-            console.log(`=====>>>>>${req.file.path}`);
-            console.log(`=====>>>>>${filePath}`);
             // validation
 
             const { error } = profileSchema.validate(req.body);
