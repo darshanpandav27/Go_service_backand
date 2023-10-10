@@ -4,6 +4,7 @@ import CustomErrorHandler from '../services/CustomErrorHandler.js';
 import path from 'path';
 import fs from 'fs';
 import profileSchema from '../validators/profileValidator.js';
+import AdminprofileSchema from "../validators/adminValidator.js";
 
 const storage = multer.diskStorage({
     destination: (req, file, cb) => cb(null, 'uploads'),
@@ -63,6 +64,70 @@ const profileController = {
                     phone_number,
                     address,
                     Gender,
+                    image: filePath},
+                    {new : true}
+                );
+                console.log(document.image);
+                if (!document) {
+                    return res.status(400).json({
+                        status: false,
+                        massage:"404 Not Found"
+                    });
+                }
+            } catch (err) {
+                return res.status(500).json({
+                    status: false,
+                    massage: err
+                });
+            }
+            console.log(document);
+            res.status(200).json({
+                status: true,
+                data:document,
+                massage:"successfully created..."
+            });
+        });
+    },
+    async Adminprofile(req, res, next) {
+        handleMultipartData(req, res, async (err) => {
+            if (err) {
+                return res.status(500).json({
+                    status: false,
+                    massage: 'Internal server error'
+                });
+            }
+            const filePath = req.file.path;
+            // validation
+
+            const { error } = AdminprofileSchema.validate(req.body);
+
+             if(error){
+                fs.unlink(`${appRoot}/${filePath}`,(err)=>{
+                    // console.log(err.message);
+                        return res.status(500).json({
+                            status: false,
+                            massage: 'Internal server error'
+                        });
+                });
+                return res.status(500).json({
+                    status: false,
+                    massage: error
+                });
+             }
+
+
+            const { name, email, address,phone_number,Lat,Log,Compny_name} = req.body;
+
+            let document;
+            try {
+                document = await User.findOneAndUpdate(
+                    {_id: req.params.id},
+                    {name,
+                    phone_number,
+                    address,
+                    Lat,
+                    Log,
+                    Compny_name,
                     image: filePath},
                     {new : true}
                 );
@@ -147,7 +212,71 @@ const profileController = {
                 massage:"Update successfully"
             });
         });
-    }
+    },
+    Adminprofileupdate(req, res, next) {
+        handleMultipartData(req, res, async (err) => {
+            if (err) {
+                return res.status(500).json({
+                    status: false,
+                    massage: 'Internal server error'
+                });
+            }
+            const filePath = req.file.path;
+            // validation
+
+            const { error } = AdminprofileSchema.validate(req.body);
+
+             if(error){
+                fs.unlink(`${appRoot}/${filePath}`,(err)=>{
+                    // console.log(err.message);
+                        return res.status(500).json({
+                            status: false,
+                            massage: 'Internal server error'
+                        });
+                });
+                return res.status(500).json({
+                    status: false,
+                    massage: error
+                });
+             }
+
+
+            const { name, email, address,phone_number,Lat,Log,Compny_name} = req.body;
+
+            let document;
+            try {
+                document = await User.findOneAndUpdate(
+                    {_id: req.params.id},
+                    {name,
+                    phone_number,
+                    address,
+                    Lat,
+                    Log,
+                    Compny_name,
+                    image: filePath},
+                    {new : true}
+                );
+                console.log(document.image);
+                if (!document) {
+                    return res.status(400).json({
+                        status: false,
+                        massage:"404 Not Found"
+                    });
+                }
+            } catch (err) {
+                return res.status(500).json({
+                    status: false,
+                    massage: err
+                });
+            }
+            console.log(document);
+            res.status(200).json({
+                status: true,
+                data:document,
+                massage:"successfully created..."
+            });
+        });
+    },
 }
 
 export default profileController;

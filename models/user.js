@@ -9,6 +9,9 @@ const userSchema = new Schema({
     phone_number:{ type: String,},
     password: { type: String},
     address:{ type: String,},
+    Lat:{ type: String,},
+    Lot:{ type: String,},
+    Compny_name:{ type: String,},
     Gender: { type: String},
     image: {
         type: String,
