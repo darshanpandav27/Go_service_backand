@@ -10,7 +10,7 @@ const userSchema = new Schema({
     password: { type: String},
     address:{ type: String,},
     Lat:{ type: String,},
-    Lot:{ type: String,},
+    Log:{ type: String,},
     Compny_name:{ type: String,},
     Gender: { type: String},
     image: {
