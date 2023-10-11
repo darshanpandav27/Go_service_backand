@@ -241,7 +241,7 @@ const profileController = {
              }
 
 
-            const { name, email, address,phone_number,Lat,Log,Compny_name} = req.body;
+            const { name, email, address,phone_number,Compny_name} = req.body;
 
             let document;
             try {
@@ -250,8 +250,6 @@ const profileController = {
                     {name,
                     phone_number,
                     address,
-                    Lat,
-                    Log,
                     Compny_name,
                     image: filePath},
                     {new : true}
