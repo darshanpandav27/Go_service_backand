@@ -2,6 +2,7 @@ import Joi from 'joi';
 import { User } from '../../models/index.js';
 import bcrypt from 'bcrypt';
 import JwtService from '../../services/JwtService.js';
+import sendPushNotification from '../../services/pushnotifiction.js';
 
 const loginController = {
     async login(req, res, next) {
@@ -47,6 +48,7 @@ const loginController = {
         //     console.log(randomsTring);
         //     let content = ' Hello, '+name+',\n \n'+randomsTring+'';
         //     sendmail(req.body.email,mailsubject,content);
+            sendPushNotification(user._id,"hello user Good Morning...");
             res.status(200).json({ status: true,user ,access_token, massage:"login successful... " });
 
         } catch(err) {
