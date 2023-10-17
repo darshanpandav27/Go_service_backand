@@ -9,12 +9,12 @@ const errorHandler = (err, req, res, next) => {
         ...(DEBUG_MODE === 'true' && { originalError: err.message })
     }
 
-    if (err instanceof ValidationError) {
-        statusCode = 422;
-        data = {
-            message: err.message
-        }
-    }
+    // if (err instanceof ValidationError) {
+    //     statusCode = 422;
+    //     data = {
+    //         message: err.message
+    //     }
+    // }
 
     if (err instanceof CustomErrorHandler) {
         statusCode = err.status;

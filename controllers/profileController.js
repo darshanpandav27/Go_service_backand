@@ -152,7 +152,7 @@ const profileController = {
             });
         });
     },
-    update(req, res, next) {
+    async update(req, res, next) {
         handleMultipartData(req, res, async (err) => {
             if (err) {
                 return res.status(500).json({
@@ -213,7 +213,7 @@ const profileController = {
             });
         });
     },
-    Adminprofileupdate(req, res, next) {
+    async Adminprofileupdate(req, res, next) {
         handleMultipartData(req, res, async (err) => {
             if (err) {
                 return res.status(500).json({
