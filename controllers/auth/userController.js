@@ -22,7 +22,7 @@ const userController = {
     },
     async selectoneid(req, res, next) {
         try {
-            const user = await User.find({ _id: req.body._id }).select('-password -updatedAt -__v');
+            const user = await User.findOne({ _id: req.body._id }).select('-password -updatedAt -__v');
             if (!user) {
                 return res.status(400).json({
                     status: false,
