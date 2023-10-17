@@ -6,7 +6,7 @@ import auth from '../middlewares/auth.js';
 router.post('/register', registerController.register);
 router.post('/login', loginController.login);
 router.get('/profiledata/:id', auth, userController.me);
-router.get('/mapdata',userController.selectoneid);
+router.post('/mapdata',userController.selectoneid);
 router.get('/admindata', auth, userController.adminme);
 router.post('/profile/:id', auth, profileController.profile);
 router.post('/Adminprofile/:id', auth, profileController.Adminprofile);
