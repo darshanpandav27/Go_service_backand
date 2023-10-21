@@ -23,8 +23,7 @@ const serviceController = {
                 {
                     sevice_type: req.body.sevice_type,
                     sevice_type_name: req.body.sevice_type_name,
-                    price: req.body.price,
-                    gst: req.body.gst,
+                    price: req.body.price
                 }
             );
         } catch (err) {
