@@ -17,7 +17,12 @@ router.post('/otp/:id',auth,registerController.otp);
 router.post('/otpverified/:id',auth,registerController.otpverified);
 router.put('/Reotpverified/:id',auth,registerController.Reotpverified);
 router.post('/servicedata',auth,serviceController.service);
-router.get('/allservicedata',auth,serviceController.allservice);
+router.post('/allservicedata',auth,serviceController.allservice);
+router.post('/payment',auth,serviceController.addservice);
+router.get('/user/:id', auth, profileController.fulldata);
+
+
+
 
 
 

@@ -69,7 +69,9 @@ const registerController = {
         email,
         role,
         phone_number,
-        password: hashedPassword
+        password: hashedPassword,
+        sevice_id: []
+        
     });
 
     let access_token;
