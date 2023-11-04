@@ -49,7 +49,7 @@ const loginController = {
         //     let content = ' Hello, '+name+',\n \n'+randomsTring+'';
         //     sendmail(req.body.email,mailsubject,content);
             // sendPushNotification(user._id,"hello user Good Morning...");
-            res.status(200).json({ status: true,user ,access_token, massage:"login successful... " });
+            res.status(200).json({ status: true,user ,access_token, massage:"Login Successful" });
 
         } catch(err) {
             return res.status(500).json({

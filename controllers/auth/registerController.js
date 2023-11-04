@@ -97,7 +97,7 @@ const registerController = {
         })
     }
     
-    res.status(200).json({ status:true,user,access_token,massage:"login successful... "});
+    res.status(200).json({ status:true,user,access_token,massage:"Register successfuly "});
 
     },
     async otp(req,res,next){
@@ -151,7 +151,7 @@ const registerController = {
             }
             const result = await user.save();
             console.log(result);
-            res.status(200).json({ status:true,otp,massage:"Otp Sending...."});
+            res.status(200).json({ status:true,otp,massage:"Otp Send successfuly"});
             // Token
             // database whitelist
         } catch(err) {
@@ -191,7 +191,7 @@ const registerController = {
             if(req.body.otp === user.otp){
                 res.status(200).json({
                     status:true,
-                   massage:"successfully"
+                   massage:"Otp Verify Successfully"
                 })
             }else{
                 return res.status(409).json({
@@ -253,7 +253,7 @@ const registerController = {
             }
             const result = await user.save();
             console.log(result);
-            res.status(200).json({ status:true,otp,massage:"Otp Sending...."});
+            res.status(200).json({ status:true,otp,massage:"Otp Resending Complete"});
             // Token
             // database whitelist
         } catch(err) {

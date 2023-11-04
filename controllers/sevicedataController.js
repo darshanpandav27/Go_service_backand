@@ -68,7 +68,7 @@ const serviceController = {
             })
         }
 
-        const { admin_name, sevice_type,sevice_type_name,price,author} = req.body;
+        const { name, sevice_type,sevice_type_name,price,author} = req.body;
 
         let exiteduser;
 
@@ -85,13 +85,13 @@ const serviceController = {
 
         sevicedata = await addsevice(
             {
-                admin_name,
+                name,
                 sevice_type,
                 sevice_type_name,
                 price,
                 author
             }
-        ).select('-updatedAt -__v');;
+        );
         const session = await mongoose.startSession();
         session.startTransaction();
         let data  = await sevicedata.save({session});
@@ -105,7 +105,7 @@ const serviceController = {
             res.status(200).json({
                 status: true,
                 data: sevicedata,
-                massage:"successfully..."
+                massage:"Sevice Book Successfully"
             });
     },
 };

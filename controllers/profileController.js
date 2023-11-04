@@ -84,7 +84,7 @@ const profileController = {
             res.status(200).json({
                 status: true,
                 data:document,
-                massage:"successfully created..."
+                massage:"Profile Updated successfully"
             });
         });
     },
@@ -148,7 +148,7 @@ const profileController = {
             res.status(200).json({
                 status: true,
                 data:document,
-                massage:"successfully created..."
+                massage:"Profile Updated successfully"
             });
         });
     },
@@ -209,7 +209,7 @@ const profileController = {
             res.status(200).json({
                 status: true,
                 data:document,
-                massage:"Update successfully"
+                massage:"Profile Updated successfully"
             });
         });
     },
@@ -271,7 +271,7 @@ const profileController = {
             res.status(200).json({
                 status: true,
                 data:document,
-                massage:"successfully created..."
+                massage:"Profile Updated successfully"
             });
         });
     },
